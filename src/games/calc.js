@@ -8,11 +8,11 @@ export default () => {
     const randomOperation = Math.floor(Math.random() * 3);
     switch (randomOperation) {
       case 0:
-        return [`${num1} + ${num2}`, num1 + num2];
+        return [`${num1} + ${num2}`, `${num1 + num2}`];
       case 1:
-        return [`${num1} - ${num2}`, num1 - num2];
+        return [`${num1} - ${num2}`, `${num1 - num2}`];
       default:
-        return [`${num1} * ${num2}`, num1 * num2];
+        return [`${num1} * ${num2}`, `${num1 * num2}`];
     }
   };
   startGame(questionGenerate, description);
