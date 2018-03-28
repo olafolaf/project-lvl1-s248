@@ -1,15 +1,14 @@
 import readlineSync from 'readline-sync';
 
-export default () => {
+export default (questionGenerate, description) => {
   console.log('Welcome to the Brain Games!');
-  console.log('Answer "yes" if number even otherwise answer "no".');
+  console.log(description);
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}`);
   for (let i = 0; i < 3; i += 1) {
-    const num = Math.round(Math.random() * 100) + 1;
-    const correctAnswer = num % 2 === 0 ? 'yes' : 'no';
-    console.log(`Question: ${num}`);
-    const answer = readlineSync.question('Your answer: ');
+    const [question, correctAnswer] = questionGenerate();
+    console.log(`Question: ${question}`);
+    const answer = Number(readlineSync.question('Your answer: '));
     if (answer === correctAnswer) {
       console.log('Correct!');
     } else {
