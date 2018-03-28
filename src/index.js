@@ -8,8 +8,8 @@ export default (questionGenerate, description) => {
   for (let i = 0; i < 3; i += 1) {
     const [question, correctAnswer] = questionGenerate();
     console.log(`Question: ${question}`);
-    const answer = Number(readlineSync.question('Your answer: '));
-    if (answer === correctAnswer) {
+    const answer = readlineSync.question('Your answer: ');
+    if (answer == correctAnswer) {
       console.log('Correct!');
     } else {
       console.log(`${answer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
