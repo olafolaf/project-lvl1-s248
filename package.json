@@ -1,6 +1,6 @@
 {
   "name": "braingamesilia",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "hexlet-projects-lvl1",
   "main": "dist/index.js",
   "bin": {
