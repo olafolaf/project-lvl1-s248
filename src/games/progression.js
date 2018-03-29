@@ -5,21 +5,16 @@ export default () => {
   const questionGenerate = () => {
     const first = Math.round(Math.random() * 100) + 1;
     const step = Math.round(Math.random() * 10) + 1;
-    const empty = Math.round(Math.random() * 8) + 1;
-    const iter = (acc, answer, index) => {
-      if (index === 10) {
+    const missing = Math.round(Math.random() * 8) + 1;
+    const iter = (acc, n) => {
+      if (n === 11) {
+        const answer = first + ((missing - 1) * step);
         return [acc.join(' '), String(answer)];
       }
-      if (index === empty) {
-        const newAcc = [...acc, '..'];
-        const newAnswer = acc[index - 1] + step;
-        return iter(newAcc, newAnswer, index + 1);
-      }
-      const newElement = acc[index - 1] === '..' ? acc[index - 2] + (step * 2) : acc[index - 1] + step;
-      const newAcc = [...acc, newElement];
-      return iter(newAcc, answer, index + 1);
+      const newElement = n !== missing ? first + ((n - 1) * step) : '..';
+      return iter([...acc, newElement], n + 1);
     };
-    return iter([first], '', 1);
+    return iter([], 1);
   };
   startGame(questionGenerate, description);
 };

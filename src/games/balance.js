@@ -3,7 +3,6 @@ import startGame from '..';
 export default () => {
   const description = 'Balance the given number.';
   const questionGenerate = () => {
-    const balanceTwo = (a, b) => (b - a <= 1 ? [a, b] : balanceTwo(a + 1, b - 1));
     const num = Math.round(Math.random() * 10000);
     const balance = (number) => {
       const numberToArray = String(number).split('').map(element => parseInt(element, 10));
@@ -17,11 +16,10 @@ export default () => {
         const minIndex = array.indexOf(min);
         const newArray = array.filter((element, index) =>
           (index !== maxIndex && index !== minIndex));
-        return iter([...newArray, ...balanceTwo(min, max)]);
+        return iter([...newArray, max - 1, min + 1]);
       };
       const newArray = iter(numberToArray);
-      newArray.sort((a, b) => a - b);
-      return newArray.join('');
+      return newArray.slice().sort((a, b) => a - b).join('');
     };
     return [num, balance(num)];
   };
