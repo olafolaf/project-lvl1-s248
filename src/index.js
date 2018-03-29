@@ -5,6 +5,9 @@ export default (questionGenerate, description) => {
   console.log(description);
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}`);
+  if (!questionGenerate) {
+    return;
+  }
   for (let i = 0; i < 3; i += 1) {
     const [question, correctAnswer] = questionGenerate();
     console.log(`Question: ${question}`);
