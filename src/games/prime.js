@@ -13,7 +13,7 @@ export default () => {
           return false;
         }
         return iter(num, i + 1);
-      }
+      };
       return iter(number, 2);
     };
     const answer = isPrime(question) ? 'yes' : 'no';
