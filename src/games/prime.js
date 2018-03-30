@@ -3,17 +3,21 @@ import startGame from '..';
 export default () => {
   const description = 'Is this number prime?';
   const questionGenerate = () => {
-    const num = Math.round(Math.random() * 100) + 1;
+    const question = Math.round(Math.random() * 100) + 1;
     const isPrime = (number) => {
-      for (let i = 2; i <= number / 2; i += 1) {
-        if (number % i === 0) {
+      const iter = (num, i) => {
+        if (i > num / 2) {
+          return true;
+        }
+        if (num % i === 0) {
           return false;
         }
+        return iter(num, i + 1);
       }
-      return true;
+      return iter(number, 2);
     };
-    const answer = isPrime(num) ? 'yes' : 'no';
-    return [num, answer];
+    const answer = isPrime(question) ? 'yes' : 'no';
+    return [question, answer];
   };
   startGame(questionGenerate, description);
 };

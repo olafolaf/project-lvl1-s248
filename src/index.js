@@ -8,18 +8,22 @@ export default (questionGenerate, description = '') => {
   if (!questionGenerate) {
     return;
   }
-  for (let i = 0; i < 3; i += 1) {
+  const iter = (i) => {
+    if (i === 3) {
+      console.log(`Congratulations, ${name}!`);
+      return true;
+    }
     const [question, correctAnswer] = questionGenerate();
     console.log(`Question: ${question}`);
     const answer = readlineSync.question('Your answer: ');
     if (answer === correctAnswer) {
       console.log('Correct!');
-    } else {
-      console.log(`${answer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
-      console.log(`Let's try again, ${name}!`);
-      return;
+      return iter(i + 1);
     }
-  }
-  console.log(`Congratulations, ${name}!`);
+    console.log(`${answer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
+    console.log(`Let's try again, ${name}!`);
+    return false;
+  };
+  iter(0);
 };
 
